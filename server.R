@@ -1,4 +1,4 @@
-nba=read.csv("/Users/MarcoB/Downloads/all_seasons.csv")
+nba=read.csv("all_seasons.csv")
 library(mclust)
 # This is the server logic of a Shiny web application. You can run the 
 function(input, output, session) {
@@ -21,6 +21,12 @@ function(input, output, session) {
          col = clusters()$classification,
          pch = 1, cex = 3)
     points(clusters()$centers, pch = 3, cex = 3, lwd = 3)
+  })
+  output$descrip <- renderText({
+      clusters()$parameters$mean
+  })
+  output$descrip1 <- renderText({
+    clusters()$parameters$variance$sigma
   })
   
 }
